@@ -1,0 +1,14 @@
+---
+rubymine_version: 2017.2
+rubymine_download_mirror: https://download.jetbrains.com/ruby/
+rubymine_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
+rubymine_plugins: []
+rubymine_download_directory: /tmp
+rubymine_install_directory: "{{ ansible_env['HOME'] }}/Tools"
+
+# calculated
+
+rubymine_install_file: "RubyMine-{{ rubymine_version }}.tar.gz"
+rubymine_download_url: "{{ rubymine_download_mirror }}{{ rubymine_install_file }}"
+rubymine_location: "{{ rubymine_install_directory }}/rubymine-{{ rubymine_version }}"
+rubymine_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
