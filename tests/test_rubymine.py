@@ -24,7 +24,7 @@ def test_desktop_file_contains_fullpath(File):
 def test_desktop_file_contains_right_name(File):
     f = File(desktop_file_location)
 
-    assert f.contains("rubymine 2017.2")
+    assert f.contains("RubyMine 2017.2")
 
 
 def test_start_file_exists(File):
