@@ -4,11 +4,12 @@ rubymine_download_mirror: https://download.jetbrains.com/ruby/
 rubymine_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
 rubymine_plugins: []
 rubymine_download_directory: /tmp
-rubymine_install_directory: "{{ ansible_env['HOME'] }}/Tools"
+rubymine_user_dir: "~{{ (rubymine_install_user is defined) | ternary(rubymine_install_user, ansible_user_id) }}"
+rubymine_install_directory: "{{ rubymine_user_dir | expanduser  }}/Tools"
 
 # calculated
 
 rubymine_install_file: "RubyMine-{{ rubymine_version }}.tar.gz"
 rubymine_download_url: "{{ rubymine_download_mirror }}{{ rubymine_install_file }}"
 rubymine_location: "{{ rubymine_install_directory }}/RubyMine-{{ rubymine_version }}"
-rubymine_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
+rubymine_desktop_file_location: "{{ rubymine_user_dir | expanduser  }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
