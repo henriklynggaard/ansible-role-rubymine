@@ -10,5 +10,5 @@ rubymine_install_directory: "{{ ansible_env['HOME'] }}/Tools"
 
 rubymine_install_file: "RubyMine-{{ rubymine_version }}.tar.gz"
 rubymine_download_url: "{{ rubymine_download_mirror }}{{ rubymine_install_file }}"
-rubymine_location: "{{ rubymine_install_directory }}/rubymine-{{ rubymine_version }}"
+rubymine_location: "{{ rubymine_install_directory }}/RubyMine-{{ rubymine_version }}"
 rubymine_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
