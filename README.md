@@ -20,16 +20,19 @@ Role Variables
     rubymine_plugin_download_mirror: "https://plugins.jetbrains.com/plugin/download?updateId="
     rubymine_plugins: []
     rubymine_download_directory: /tmp
-    rubymine_install_directory: "{{ ansible_env['HOME'] }}/Tools"
+    rubymine_user_dir: "~{{ (rubymine_install_user is defined) | ternary(rubymine_install_user, ansible_user_id) }}"
+    rubymine_install_directory: "{{ rubymine_user_dir | expanduser }}/Tools"
+    rubymine_install_user: <undefined>
 
     # calculated
     rubymine_install_file: "RubyMine-{{ rubymine_version }}.tar.gz"
     rubymine_download_url: "{{ rubymine_download_mirror }}{{ rubymine_install_file }}"
     rubymine_location: "{{ rubymine_install_directory }}/RubyMine-{{ rubymine_version }}"
-    rubymine_desktop_file_location: "{{ ansible_env['HOME'] }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
+    rubymine_desktop_file_location: "{{ rubymine_user_dir | expanduser }}/.local/share/applications/rubymine-{{ rubymine_version }}.desktop"
 
 
-rubymine_plugins is a list of names which get appended to rubymine_plugin_download_mirror to form a full download  
+* rubymine_plugins is a list of names which get appended to rubymine_plugin_download_mirror to form a full download
+* Defining rubymine_install_user allows the role to install under a different user, however become is required
 
 
 Dependencies
@@ -78,4 +81,5 @@ MIT
 Change log
 ----------
 
+* 1.1: Allow installation under another user
 * 1.0: Initial version

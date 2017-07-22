@@ -21,7 +21,7 @@
   get_url:
     url: "{{ rubymine_plugin_download_mirror }}{{ item }}"
     dest: "{{ rubymine_download_directory }}"
-  register: rubymine_plugins
+  register: rubymine_plugins_downloaded
   with_items: "{{ rubymine_plugins }}"
 
 - name: Install RubyMine
@@ -35,7 +35,7 @@
   unarchive:
     src: "{{ item.dest }}"
     dest: "{{ rubymine_location }}/plugins"
-  with_items: "{{ rubymine_plugins.results }}"
+  with_items: "{{ rubymine_plugins_downloaded.results }}"
 
 - name: Create RubyMine desktop entry
   template:
